@@ -219,7 +219,7 @@ const Leftbar = () => {
         }
     };
 
-    return (
+    return ( 
         // <Container className={classes.container}> 
         <div style={{position:'fixed', top: 0, zIndex: 11, }}>
             <div style={{ display: 'flex', float: 'left', }}>
