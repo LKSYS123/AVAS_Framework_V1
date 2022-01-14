@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 // import { Button, Divider, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { Divider, } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
-import { ArrowBackIosNew, ArrowForwardIos, HomeMaxOutlined, HomeOutlined, ListOutlined, MapOutlined, OpenInBrowserOutlined, } from '@mui/icons-material';
+import { ArrowBackIosNew, ArrowForwardIos, BusinessOutlined, DirectionsBusOutlined, DirectionsCarFilledOutlined, HomeMaxOutlined, HomeOutlined, ListOutlined, MapOutlined, OpenInBrowserOutlined, } from '@mui/icons-material';
 import { styled, useTheme } from '@mui/material/styles';
 // import Clock from 'react-live-clock';
 
@@ -141,6 +141,10 @@ const Leftbar = () => {
     const [subMemuHome, setSubMenuHome] = useState(false);
     const [subMemuList, setSubMenuList] = useState(false);
 
+    const [subMenuLee, setSubMenuLee] = useState(false);
+    const [subMenuCho, setSubMenuCho] = useState(false);
+    const [subMenuKim, setSubMenuKim] = useState(false);
+
     // const testview = () => RenderInSubMenu;
 
     const RenderInSubMenu_Home = () => (
@@ -179,6 +183,78 @@ const Leftbar = () => {
         </div>        
     );    
 
+    /**
+     * 대표님 서브 메뉴 등록
+     * page 생성 후 to='routePath' 등록
+     * App.jsx 에 Route 등록
+     * @returns 
+     */
+    const RenderInSubMenu_LEE = () => (
+        // <subMeunListView />
+        <div>
+            <div>
+                <Button className={classes.button} component={Link} to='/SampleLee1' >
+                    <List className={classes.icon} />
+                    <Typography className={classes.text} >Sample Lee 1</Typography>
+                </Button>
+            </div>
+            <div>
+                <Button className={classes.button} component={Link} to='/Openlayer1'>
+                    <Map className={classes.icon} />
+                    <Typography className={classes.text} >DATA Grid 2</Typography>
+                </Button>
+            </div>
+        </div>        
+    );        
+
+    /**
+     * 조과장 서브 메뉴 등록
+     * page 생성 후 to='routePath' 등록
+     * App.jsx 에 Route 등록
+     * @returns 
+     */
+    const RenderInSubMenu_CHO = () => (
+        // <subMeunListView />
+        <div>
+            <div>
+                <Button className={classes.button} component={Link} to='/DataGridList' >
+                    <List className={classes.icon} />
+                    <Typography className={classes.text} >DATA Grid 1</Typography>
+                </Button>
+            </div>
+            <div>
+                <Button className={classes.button} component={Link} to='/Openlayer1'>
+                    <Map className={classes.icon} />
+                    <Typography className={classes.text} >DATA Grid 2</Typography>
+                </Button>
+            </div>
+        </div>        
+    );            
+
+    /**
+     * 영광씨 서브 메뉴 등록
+     * page 생성 후 to='routePath' 등록
+     * App.jsx 에 Route 등록
+     * @returns 
+     */    
+    const RenderInSubMenu_KIM = () => (
+        // <subMeunListView />
+        <div>
+            <div>
+                <Button className={classes.button} component={Link} to='/DataGridList' >
+                    <List className={classes.icon} />
+                    <Typography className={classes.text} >DATA Grid 1</Typography>
+                </Button>
+            </div>
+            <div>
+                <Button className={classes.button} component={Link} to='/Openlayer1'>
+                    <Map className={classes.icon} />
+                    <Typography className={classes.text} >DATA Grid 2</Typography>
+                </Button>
+            </div>
+        </div>        
+    );            
+
 
     const leftHandleDrawer = () => {
         if (leftOpen === true) {
@@ -193,19 +269,51 @@ const Leftbar = () => {
         console.log('===click===menuGubun='+menuGubun);
         // if (leftOpen === false) {
             setLeftOpen(true);
-            if (menuGubun === 'home') {
+            if (menuGubun === 'home') {                
+                setSubMenuList(false);              
+                setSubMenuLee(false);
+                setSubMenuCho(false);
+                setSubMenuKim(false);
+
                 setSubMenuHome(true);               
-                setSubMenuList(false);               
                 RenderInSubMenu_Home();                
-            } else if (menuGubun === 'list') {
-                setSubMenuList(true);            
+            } else if (menuGubun === 'list') {                
                 setSubMenuHome(false);                  
+                setSubMenuLee(false);
+                setSubMenuCho(false);
+                setSubMenuKim(false);
+
+                setSubMenuList(true);            
                 RenderInSubMenu_List();               
             } else if (menuGubun === 'openlayer') {
 
             } else if (menuGubun === 'layerPop') {
 
-            } else {
+            } else if (menuGubun === 'SampleLee') {
+                setSubMenuList(false);            
+                setSubMenuHome(false);           
+                setSubMenuCho(false);
+                setSubMenuKim(false);
+
+                setSubMenuLee(true);
+                RenderInSubMenu_LEE();
+            } else if (menuGubun === 'SampleCho') {
+                setSubMenuList(false);            
+                setSubMenuHome(false);           
+                setSubMenuLee(false);
+                setSubMenuKim(false);
+
+                setSubMenuCho(true);
+                RenderInSubMenu_CHO();
+            } else if (menuGubun === 'SampleKim') {
+                setSubMenuList(false);            
+                setSubMenuHome(false);           
+                setSubMenuLee(false);
+                setSubMenuCho(false);
+                
+                setSubMenuKim(true);
+                RenderInSubMenu_KIM();                
+            }else {
 
             }
         // };
@@ -248,12 +356,36 @@ const Leftbar = () => {
                                 {/* <Typography className={classes.text} >Openlayer Pop</Typography> */}
                             </Button>                
                         </div>
+                        <div>
+                            <Button className={classes.button} component={Link} to='/SampleTest1' onClick={() => {leftSideDrawer('SampleLee')}}>
+                                <BusinessOutlined sx={{fontSize:50, color:'#3177d5'}} className={classes.icon} />
+                                {/* <Typography className={classes.text} >Openlayer Pop</Typography> */}
+                            </Button>                
+                        </div>                                                                        
+                        <div>
+                            <Button className={classes.button} component={Link} to='/SampleTest2' onClick={() => {leftSideDrawer('SampleCho')}}>
+                                <DirectionsCarFilledOutlined sx={{fontSize:50, color:'#3177d5'}} className={classes.icon} />
+                                {/* <Typography className={classes.text} >Openlayer Pop</Typography> */}
+                            </Button>                
+                        </div>
+                        <div>
+                            <Button className={classes.button} component={Link} to='/SampleTest3' onClick={() => {leftSideDrawer('SampleKim')}}>
+                                <DirectionsBusOutlined sx={{fontSize:50, color:'#3177d5'}} className={classes.icon} />
+                                {/* <Typography className={classes.text} >Openlayer Pop</Typography> */}
+                            </Button>                
+                        </div>                        
+
                     </div>
                         {/* 좌측 움직이는 사이드바 */}
                         <div className='leftBar'>
                             <Drawer variant="permanent" open={leftOpen}>
                                 { subMemuHome && <RenderInSubMenu_Home />}
                                 { subMemuList && <RenderInSubMenu_List />}
+
+                                { subMenuLee && <RenderInSubMenu_LEE />}
+                                { subMenuCho && <RenderInSubMenu_CHO />}
+                                { subMenuKim && <RenderInSubMenu_KIM />}
+                                
                                 {/* <Routes>
                                     <Route path='/' element={<ListHome />} exact />
                                     <Route path='/mail/*' element={<MailList />} />

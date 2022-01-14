@@ -18,6 +18,11 @@ import DataGridList from "./pages/DataGridList";
 import Openlayer1 from "./pages/Openlayer1";
 import OpenlayerPop from "./pages/OpenlayerPop";
 import PopupLayer from "./pages/PopupLayer";
+import SampleTest1 from "./pages/SampleTest1";
+import SampleTest2 from "./pages/SampleTest2";
+import SampleTest3 from "./pages/SampleTest3";
+import SampleLee1 from "./pages/SampleLee1";
+
 import Rutas from "./Rutas";
 
 
@@ -40,39 +45,33 @@ const App = () => {
           <Route path="/DataGridList" element={<DataGridList />} />
           <Route path="/Openlayer1" element={<Openlayer1 />} />
           <Route path="/OpenlayerPop" element={<OpenlayerPop />} />
+          <Route path="/SampleTest1" element={<SampleTest1 />} />          
+          <Route path="/SampleTest2" element={<SampleTest2 />} />          
+          <Route path="/SampleTest3" element={<SampleTest3 />} />          
+
+          <Route path="/SampleLee1" element={<SampleLee1 />} />          
         </Route>        
         <Route path="/PopupLayer" element={<PopupLayer />} />
       </Routes>
     // </Router>
       // <Rutas />
-
       // <div>
-
-      //     <Navbar/>
-          
+      //     <Navbar/>          
       //     {/* <Router exact path="/" component={ Feed } /> */}
       //     {/* <Router path="/abcd" component={Abcd} /> */}
       //     <Grid container="container">
       //         <Grid item="item" sm={2} xs={2}>
       //             <Leftbar/>
-      //         </Grid>
-              
-      //         <Grid item="item" sm={10} xs={10}>
-
-              
+      //         </Grid>              
+      //         <Grid item="item" sm={10} xs={10}>             
       //           <Rutas />
-              
-
       //         </Grid>
-              
       //         {/* <Grid item="item" sm={3} className={classes.right}>
       //             <Rightbar/>
       //         </Grid> */}
       //     </Grid>
       //     <Add/>
-
       // </div>
-
   );
 };
 
