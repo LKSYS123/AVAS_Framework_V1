@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'vsldev'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_237532D6FCA54814B91182C4AF864C19 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3AFFB023B4FF45588D35750066E799E0 }}
           package: .
