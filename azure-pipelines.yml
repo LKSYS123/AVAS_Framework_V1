@@ -11,10 +11,10 @@ variables:
   azureSubscription: '954e49c4-346d-45ba-95d0-181cf826ab6a'
 
   # Web app name
-  webAppName: 'vsldev'
+  webAppName: 'tmldev'
 
   # Environment name
-  environmentName: 'vsldev'
+  environmentName: 'tmldev'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -42,7 +42,7 @@ stages:
         deploy:
           steps:
           - task: AzureRmWebAppDeployment@4
-            displayName: 'Azure App Service Deploy: vsldev'
+            displayName: 'Azure App Service Deploy: tmldev'
             inputs:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
