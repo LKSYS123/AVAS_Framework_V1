@@ -5,21 +5,6 @@
 
 trigger:
 - main
-- task: ArchiveFiles@2
-- task: AzureWebAppContainer@1
-  inputs:
-    azureSubscription: '㈜어빌리티시스템즈 (d7b2f777-7e70-4323-a4f1-e500c7cf09b8)'
-    appName: 'tmldev'
-    deployToSlotOrASE: true
-    resourceGroupName: 'avasDevSys'
-    slotName: 'production'
-    containers: 'tmldev'
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'tar'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
@@ -42,20 +27,6 @@ stages:
     displayName: Build
     pool:
       vmImage: $(vmImageName)
-
-    steps:
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
-      inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
-
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      artifact: drop
-
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
