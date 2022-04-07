@@ -19,7 +19,7 @@ const Feed = () => {
         <Post />
         <Post /> */}
 
-        <Outlet />
+        {/* <Outlet /> */}
     </Container>
     
   );

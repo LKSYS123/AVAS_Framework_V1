@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect, } from "react";
-import { retrieveTutorials, findTutorialsByTitle, deleteAllTutorials } from "../actions/tutorials";
+import { retrieveTutorials, findTutorialsByTitle, deleteAllTutorials, createTutorial } from "../actions/tutorials";
 import * as actions from "../actions/tutorials";
 
 import { Button, Container, Typography, Fab, FormControlLabel, FormLabel, MenuItem, Modal, Radio, RadioGroup, Snackbar, TextField, Tooltip} from "@material-ui/core";
@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { DataGrid } from "@material-ui/data-grid";
 
 import store from "../store";
+import { Autocomplete } from "@mui/material";
+
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -54,6 +56,13 @@ const DataGridList = () => {
 const classes = useStyles();
 
 const [open, setOpen] = useState(false);
+
+const [cd_cargo_rep, setCd_cargo_rep] = useState("");
+const [cd_cust, setCd_cust] = useState("");
+const [cd_cargo_vest, setCd_cargo_vest] = useState("");
+const [nm_cargo1, setNm_cargo1] = useState("");
+
+
 const [openAlert, setOpenAlert] = useState(false);
 const handleClose = (event, reason) => {
   if (reason === 'clickaway') {
@@ -105,25 +114,126 @@ const cargos = useSelector((store) => store.CargoTutorial);
         id: record?.nm_cargo1,   
     };
   });
+
+  const cd_cargo_rep_Change = (event) => {
+    setCd_cargo_rep(event.target.value);
+    setInfoCargo({...infoCargo, [event.target.name]: event.target.value})
+  };
+  const cd_cust_Change = (event) => {
+    setCd_cust(event.target.value);
+    setInfoCargo({...infoCargo, [event.target.name]: event.target.value})
+  };
+  const cd_cargo_vest_Change = (event) => {
+    setCd_cargo_vest(event.target.value);
+    setInfoCargo({...infoCargo, [event.target.name]: event.target.value})
+  };
+  const nm_cargo1_Change = (event) => {
+    setNm_cargo1(event.target.value);
+    setInfoCargo({...infoCargo, [event.target.name]: event.target.value})
+  };      
+//   const handleInputChange = (event) => {
+//       const { name, value } =
+//   }
+
+  const initialCargoState = {
+    id: null,
+    cd_cargo_rep: "",
+    cd_cust: "",
+    cd_cargo_vest: "",
+    nm_cargo1: "",
+    published: false
+  };
+  const [infoCargo, setInfoCargo] = useState(initialCargoState);
+//   CargoTutorial
+  const [submitted, setSubmitted] = useState(false);
+  const saveTutorial = () => {
+      const { cd_cargo_rep, cd_cust, cd_cargo_vest, nm_cargo1 } = infoCargo;
+      dispatch(createTutorial(cd_cargo_rep, cd_cust, cd_cargo_vest, nm_cargo1)).then( data => {
+        setInfoCargo({
+            id: data.id,
+            cd_cargo_rep: data.cd_cargo_rep,
+            cd_cust: data.cd_cust,
+            cd_cargo_vest: data.cd_cargo_vest,
+            nm_cargo1: data.nm_cargo1,
+            published: data.published
+        });
+        setSubmitted(true);
+        console.log("===data==="+data);
+      }).catch(e => {
+        console.log('===catch==='+e);
+      });
+  };
+
+
+ //   const { handleSubmit } = useForm();
+// onSubmit={handleSubmit()}
 //   if (!cargos) retrun null;
   return (      
     <Container className={classes.container}>
       <div>
             <Typography className={classes.title}> Cargo List </Typography>
-            <DataGrid rows={ rowDatas } columns={ columns } pageSize={ 5 } checkboxSelection autoHeight disableColumnMenu />
+            <DataGrid onRowClick={(params, event) => {
+                setCd_cargo_rep(params.row.cd_cargo_rep);
+                setCd_cust(params.row.cd_cust);
+                setCd_cargo_vest(params.row.cd_cargo_vest);
+                setNm_cargo1(params.row.nm_cargo1);
+            }} rows={ rowDatas } columns={ columns } pageSize={ 5 } checkboxSelection autoHeight disableColumnMenu />
       </div>
       <div>
       <form className={classes.form} autoComplete="off">
         <div className={classes.item}>
             <TextField 
                 id="standard-basic" 
-                label="Title" 
+                label="Cargo rep" 
                 variant="standard" 
                 size="small" 
                 style={{width:"100%"}}
+                defaultValue="test aaa"
+                value={cd_cargo_rep}
+                onChange={cd_cargo_rep_Change}
+                name="cd_cargo_rep"
             />
         </div>
         <div className={classes.item}>
+            <TextField 
+                id="standard-basic" 
+                label="Cust" 
+                variant="standard" 
+                size="small" 
+                style={{width:"100%"}}
+                defaultValue="test bbb"
+                value={cd_cust}
+                onChange={cd_cust_Change}
+                name="cd_cust"
+            />
+        </div>        
+        <div className={classes.item}>
+            <TextField 
+                id="standard-basic" 
+                label="Cargo vest" 
+                variant="standard" 
+                size="small" 
+                style={{width:"100%"}}
+                defaultValue="test ccc"
+                value={cd_cargo_vest}
+                onChange={cd_cargo_vest_Change}
+                name="cd_cargo_vest"
+            />
+        </div>        
+        <div className={classes.item}>
+            <TextField 
+                id="standard-basic" 
+                label="Cargo Name" 
+                variant="standard" 
+                size="small" 
+                style={{width:"100%"}}
+                defaultValue="test ddd"
+                value={nm_cargo1}
+                onChange={nm_cargo1_Change}
+                name="nm_cargo1"
+            />
+        </div>
+        {/* <div className={classes.item}>
             <TextField 
                 id="standard-multiline-static"
                 label="Description"
@@ -154,10 +264,14 @@ const cargos = useSelector((store) => store.CargoTutorial);
                     control={<Radio size="small"/>}
                     label="Custom (Premium)"/>
             </RadioGroup>
-        </div>
+        </div> */}
         <div className={classes.item}>
-            <Button variant="outlined" color="primary" style={{marginRight:20}} onClick={() => setOpenAlert(true)}>Create</Button>
-            <Button variant="outlined" color="secondary" onClick={() => setOpen(false)}>Cancel</Button>
+            {/* <Button variant="outlined" color="primary" style={{marginRight:20}} onClick={() => setOpenAlert(true)}>Create</Button>            
+            <Button variant="outlined" color="secondary" onClick={() => setOpen(false)}>Cancel</Button> */}
+            <Button variant="outlined" color="primary" style={{marginRight:20}} onClick={saveTutorial} >CREATE</Button>
+            <Button variant="outlined" color="primary" style={{marginRight:20}} >UPDATE</Button>
+            <Button variant="outlined" color="primary" style={{marginRight:20}} >DELETE</Button>
+            <Button variant="outlined" color="secondary" >Cancel</Button>            
         </div>
     </form>          
       </div>

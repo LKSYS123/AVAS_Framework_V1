@@ -15,9 +15,10 @@ import {
   // function tutorialReducer(tutorials = initialState, action) {
   export const CargoTutorial = (state = initialState, action) => {
     const { type, payload } = action;
-  console.log('====tutorialReducer====type='+type);
+  // console.log('====tutorialReducer====type='+payload.length);
     switch (type) {
       case CREATE_TUTORIAL:
+        console.log('====tutorialReducer====CREATE_TUTORIAL='+payload.length);
         return [...state, payload];
   
       case RETRIEVE_TUTORIALS:

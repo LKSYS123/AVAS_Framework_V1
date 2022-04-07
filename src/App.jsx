@@ -24,6 +24,10 @@ import SampleTest3 from "./pages/SampleTest3";
 import SampleLee1 from "./pages/SampleLee1";
 
 import Rutas from "./Rutas";
+import PupupMainLayout from "./pages/PupupMainLayout";
+import PopupLayout from "./pages/PopupLayout";
+import ModalOpen from "./pages/ModalOpen";
+import MultiLang from "./pages/MultiLang";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,18 +44,29 @@ const App = () => {
     // <Router>
       <Routes>
         {/* <Route path="/" element={<Sample3 />} /> */}
-        <Route path="/" element={<PageLayout />} >          
-          <Route path="/sample1" element={<Sample1 />} />
+        <Route path="/" element={<PageLayout />} >
+          <Route path="" element={<Feed />} />
           <Route path="/DataGridList" element={<DataGridList />} />
+          <Route path="/MultiLang" element={<MultiLang />} />          
           <Route path="/Openlayer1" element={<Openlayer1 />} />
           <Route path="/OpenlayerPop" element={<OpenlayerPop />} />
           <Route path="/SampleTest1" element={<SampleTest1 />} />          
           <Route path="/SampleTest2" element={<SampleTest2 />} />          
-          <Route path="/SampleTest3" element={<SampleTest3 />} />          
+          <Route path="/SampleTest3" element={<SampleTest3 />} />  
+          <Route path="/PupupMainLayout" element={<PupupMainLayout />} />
+          <Route path="/ModalOpen" element={<ModalOpen />} />
 
           <Route path="/SampleLee1" element={<SampleLee1 />} />          
         </Route>        
+
+        <Route path="/PopupLayout" element={<PopupLayout />} >          
+          <Route path="" element={<Sample1 />} />
+          <Route path="sample1" element={<Sample1 />} />      
+          <Route path="sample2" element={<Sample2 />} />      
+        </Route>        
+
         <Route path="/PopupLayer" element={<PopupLayer />} />
+        {/* <Route path="/PopupLayout" element={<PopupLayout />} /> */}
       </Routes>
     // </Router>
       // <Rutas />

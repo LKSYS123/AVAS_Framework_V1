@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 // import { Button, Divider, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { Divider, } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
-import { ArrowBackIosNew, ArrowForwardIos, BusinessOutlined, DirectionsBusOutlined, DirectionsCarFilledOutlined, HomeMaxOutlined, HomeOutlined, ListOutlined, MapOutlined, OpenInBrowserOutlined, } from '@mui/icons-material';
+import { ArrowBackIosNew, ArrowForwardIos, AutoAwesomeMotion, BusinessOutlined, DirectionsBusOutlined, DirectionsCarFilledOutlined, HomeMaxOutlined, HomeOutlined, Launch, ListOutlined, MapOutlined, Newspaper, OpenInBrowserOutlined, } from '@mui/icons-material';
 import { styled, useTheme } from '@mui/material/styles';
 // import Clock from 'react-live-clock';
 
@@ -140,6 +140,7 @@ const Leftbar = () => {
     const [rightOpen, setRightOpen] = useState(false);
     const [subMemuHome, setSubMenuHome] = useState(false);
     const [subMemuList, setSubMenuList] = useState(false);
+    const [subMemuPopup, setSubMenuPopup] = useState(false);
 
     const [subMenuLee, setSubMenuLee] = useState(false);
     const [subMenuCho, setSubMenuCho] = useState(false);
@@ -151,9 +152,9 @@ const Leftbar = () => {
         // <subMeunListView />
         <div>
             <div>
-                <Button className={classes.button} component={Link} to='/DataGridList' >
+                <Button className={classes.button} component={Link} to='/MultiLang' >
                     <List className={classes.icon} />
-                    <Typography className={classes.text} >Cargo List</Typography>
+                    <Typography className={classes.text} >Multi Language</Typography>
                 </Button>
             </div>
             <div>
@@ -182,6 +183,30 @@ const Leftbar = () => {
             </div>
         </div>        
     );    
+
+    const RenderInSubMenu_Popup = () => (
+        // <subMeunListView />
+        <div>
+            <div>
+                <Button className={classes.button} component={Link} to='/OpenlayerPop' >
+                    <Launch className={classes.icon} />
+                    <Typography className={classes.text} >Popup Open</Typography>
+                </Button>
+            </div>
+            <div>
+                <Button className={classes.button} component={Link} to='/PupupMainLayout'>
+                    <Newspaper className={classes.icon} />
+                    <Typography className={classes.text} >Popup Layout</Typography>
+                </Button>
+            </div>
+            <div>
+                <Button className={classes.button} component={Link} to='/ModalOpen'>
+                    <AutoAwesomeMotion className={classes.icon} />
+                    <Typography className={classes.text} >Modal Open</Typography>
+                </Button>
+            </div>            
+        </div>        
+    );        
 
     /**
      * 대표님 서브 메뉴 등록
@@ -274,6 +299,7 @@ const Leftbar = () => {
                 setSubMenuLee(false);
                 setSubMenuCho(false);
                 setSubMenuKim(false);
+                setSubMenuPopup(false);
 
                 setSubMenuHome(true);               
                 RenderInSubMenu_Home();                
@@ -282,18 +308,27 @@ const Leftbar = () => {
                 setSubMenuLee(false);
                 setSubMenuCho(false);
                 setSubMenuKim(false);
+                setSubMenuPopup(false);
 
                 setSubMenuList(true);            
                 RenderInSubMenu_List();               
             } else if (menuGubun === 'openlayer') {
 
             } else if (menuGubun === 'layerPop') {
+                setSubMenuHome(false);                  
+                setSubMenuLee(false);
+                setSubMenuCho(false);
+                setSubMenuKim(false);
+                setSubMenuList(false);
 
+                setSubMenuPopup(true);
+                RenderInSubMenu_Popup();
             } else if (menuGubun === 'SampleLee') {
                 setSubMenuList(false);            
                 setSubMenuHome(false);           
                 setSubMenuCho(false);
                 setSubMenuKim(false);
+                setSubMenuPopup(false);
 
                 setSubMenuLee(true);
                 RenderInSubMenu_LEE();
@@ -302,6 +337,7 @@ const Leftbar = () => {
                 setSubMenuHome(false);           
                 setSubMenuLee(false);
                 setSubMenuKim(false);
+                setSubMenuPopup(false);
 
                 setSubMenuCho(true);
                 RenderInSubMenu_CHO();
@@ -310,6 +346,7 @@ const Leftbar = () => {
                 setSubMenuHome(false);           
                 setSubMenuLee(false);
                 setSubMenuCho(false);
+                setSubMenuPopup(false);
                 
                 setSubMenuKim(true);
                 RenderInSubMenu_KIM();                
@@ -333,7 +370,7 @@ const Leftbar = () => {
             <div style={{ display: 'flex', float: 'left', }}>
                     <div className='sideMenu'>
                         <div>
-                            <Button className={classes.button} omponent={Link} to='/' onClick={() => {leftSideDrawer('home')}}>
+                            <Button className={classes.button} omponent={Link} to='/Feed' onClick={() => {leftSideDrawer('home')}}>
                                 <HomeOutlined sx={{fontSize:50, color:'#3177d5'}} className={classes.icon} />                                                                
                                 {/* <Typography className={classes.text}>Homepage</Typography> */}
                             </Button>                            
@@ -381,6 +418,8 @@ const Leftbar = () => {
                             <Drawer variant="permanent" open={leftOpen}>
                                 { subMemuHome && <RenderInSubMenu_Home />}
                                 { subMemuList && <RenderInSubMenu_List />}
+                                { subMemuPopup && <RenderInSubMenu_Popup />}
+                                
 
                                 { subMenuLee && <RenderInSubMenu_LEE />}
                                 { subMenuCho && <RenderInSubMenu_CHO />}

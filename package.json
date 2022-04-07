@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-react": "^7.16.7",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@material-ui/core": "^4.12.3",
@@ -16,9 +20,13 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.24.0",
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "i18next": "^21.6.11",
     "ol": "^6.10.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-i18next": "^11.15.4",
     "react-new-window": "^0.2.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.1.1",
@@ -27,13 +35,18 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
+    "style-loader": "^3.3.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "webpack-dev-server": "webpack-dev-server",
+    "dev": "webpack serve --mode development",
+    "prod": "NODE_ENV=production webpack --mode=production",
+    "serve": "webpack --mode production"
   },
   "eslintConfig": {
     "extends": [
@@ -52,5 +65,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.16.7",
+    "babel-plugin-transform-imports": "^2.0.0",
+    "babel-preset-react-app": "^10.0.1",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "serve": "^13.0.2"
   }
 }

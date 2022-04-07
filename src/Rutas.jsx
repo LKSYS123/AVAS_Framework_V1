@@ -10,6 +10,7 @@ import Sample3 from './Sample3';
 import Sample4 from './Sample4';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PageLayout from './PageLayout';
+import Sample2 from './pages/Sample2';
 
 const Rutas = () => {
     // const elemtent = useRoutes([
@@ -27,8 +28,10 @@ const Rutas = () => {
     // ])    
 
     const elemtent = useRoutes([
-        {path:'/', element:<Feed/>},
-        {path:'/sample1', element:<Sample1/>},
+        {path:'/', element:<Sample1/>},
+        {path:'sample1', element:<Sample1/>},
+        {path:'sample2', element:<Sample2/>},
+        // {path:'/PopupLayout/sample2', element:<Sample2/>},
         // {path:'/DataGridList', element:<DataGridList/>},
         // {path:'/Openlayer1', element:<Openlayer1/>},
         // {path:'/OpenlayerPop', element:<OpenlayerPop/>},

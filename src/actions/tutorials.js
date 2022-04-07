@@ -10,10 +10,13 @@ import {
   import axios from "axios"; 
 import API from "../API";
   
-  export const createTutorial = (title, description) => async (dispatch) => {
+  // export const createTutorial = (title, description) => async (dispatch) => {
+    export const createTutorial = (cd_cargo_rep, cd_cust, cd_cargo_vest, nm_cargo1) => async (dispatch) => {    
+      console.log("action => createTutorial ========="+cd_cargo_rep+"/"+cd_cust);
     try {
-      const res = await TutorialDataService.create({ title, description });
-  
+      console.log("action => createTutorial =======11111==");
+      const res = await TutorialDataService.create({ cd_cargo_rep, cd_cust, cd_cargo_vest, nm_cargo1 });
+      console.log("action => createTutorial =======22222==");
       dispatch({
         type: CREATE_TUTORIAL,
         payload: res.data,

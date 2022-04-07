@@ -12,9 +12,11 @@ class TutorialDataService {
 //     return http.get(`/tutorials/${id}`);
 //   }
 
-//   create(data) {
-//     return http.post("/tutorials", data);
-//   }
+  create(data) {
+    console.log("=====TutorialDataService==create=="+data.cd_cargo_rep);
+    // return http.post("/marCargoInfoSave", data);
+    return http.post("/marCargoInfoSave", data);
+  }
 
 //   update(id, data) {
 //     return http.put(`/tutorials/${id}`, data);

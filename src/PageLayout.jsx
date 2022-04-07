@@ -40,9 +40,8 @@ const PageLayout = () => {
               </Grid>
               
               <Grid item xs>
-
-              
-                <Rutas />
+                
+                {/* <Rutas /> */}
               
                 <Outlet />      
               </Grid>

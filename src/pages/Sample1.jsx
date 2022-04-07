@@ -26,9 +26,10 @@ Sample 1111111111111111<br/>
 Sample 1111111111111111<br/>
 Sample 1111111111111111
 
+<Outlet />
     </div>
 
-    
+
     </Container>
   );
 };

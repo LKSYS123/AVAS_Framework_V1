@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import store from './store';
+import './multilang/i18n';
 // import OLMapFragment from './components/OLMapFragment'
 
 ReactDOM.render(

@@ -91,9 +91,10 @@ var tml_Block_GeoJson = new VectorSource({
     url: function (extent) {
         //console.log("tml_cd", {tml_cd});
         var strUrl =
-            'http://192.168.1.49:8080/geoserver/all_Tml_blk_StoreName/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=all_Tml_blk_StoreName%3AAll_Tml_Blk_View_SQL&maxFeatures=10000&outputFormat=application%2Fjson' +
-            '&viewparams=tml_cd_bl:' +
-            `${tml_cd2}`
+            'http://192.168.1.47:8088/geoserver/all_Tml_blk_StoreName/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=all_Tml_blk_StoreName%3Atest&maxFeatures=50&outputFormat=application%2Fjson';
+            // 'http://192.168.1.49:8080/geoserver/all_Tml_blk_StoreName/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=all_Tml_blk_StoreName%3AAll_Tml_Blk_View_SQL&maxFeatures=10000&outputFormat=application%2Fjson' +
+            // '&viewparams=tml_cd_bl:' +
+            // `${tml_cd2}`
         //console.log("strUrl", strUrl.toString());
         return strUrl
         //('http://localhost:8080/geoserver/all_Tml_blk_StoreName/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=all_Tml_blk_StoreName%3AAll_Tml_Blk_View_SQL&maxFeatures=10000&outputFormat=application%2Fjson&viewparams=tml_cd_bl:ICO')
