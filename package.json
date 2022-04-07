@@ -2,6 +2,7 @@
   "name": "new",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://tmldev.azurewebsites.net",
   "dependencies": {
     "@babel/core": "^7.16.7",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
